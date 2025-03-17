@@ -8,7 +8,7 @@ int func_sum (int a, int b){
 
 int main() {
     char array[] = {"pucrs"};
-    char *p = i&array[0];
+    char *p = i&    array[0];
     
     printf("%x -> %c \n", &p, p);
     printf("%x -> %c \n", &p, p);
