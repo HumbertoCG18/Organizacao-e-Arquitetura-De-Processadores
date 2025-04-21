@@ -11,5 +11,6 @@
 .end_macro
 
 .data 
-msg_titulo: .asciiz "Programa de Raiz Quadrada – Newton-Raphson\n"
-msg_autores: .asciiz "Desenvolvedores: Humberto Corrêa Gomes\n"
+msg_titulo:     .asciiz "Programa de Raiz Quadrada – Newton-Raphson\n"
+msg_autores:    .asciiz "Desenvolvedores: Humberto Corrêa Gomes\n"
+msg_prompt:     .asciiz "\nDigite os parâmetros x e i para calcular sqrt_nr (x, i) ou -1 para abortar a execução\n"
