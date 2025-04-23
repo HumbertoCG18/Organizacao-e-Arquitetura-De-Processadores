@@ -15,23 +15,21 @@
 
 # Dados
 .data
-titulo:     .asciiz "Programa de Raiz Quadrada --- Newton & Raphson\n"
-autores:    .asciiz "Desenvolvedores: Humberto Correa Gomes\n"
-prompt:     .asciiz "\nDigite os parametros x e i para calcular sqrt_nr (x, i) ou -1 para abortar a execucao\n"
-prompt_x:   .asciiz "Digite o valor de x: "
-prompt_i:   .asciiz "Digite o numero de iteracoes i: "
+titulo:     .asciiz "Programa de Raiz Quadrada ‚Äì Newton-Raphson\n"
+autores:    .asciiz "Desenvolvedores: <Humberto Correa Gomes>\n"
+prompt:     .asciiz "\nExemplo com valores fixos: x=10 e i=100\n"
 encerrar:   .asciiz "Programa encerrado.\n"
 result1:    .asciiz "sqrt("
 virgula:    .asciiz ", "
 result2:    .asciiz ") = "
 newline:    .asciiz "\n"
 
-# CÛdigo
+# C√≥digo
 .text
 .globl main
 
 main:
-    # PrÛlogo
+    # Pr√≥logo
     addi $sp, $sp, -4
     sw $ra, 0($sp)
     
@@ -39,33 +37,18 @@ main:
     print_string(titulo)
     print_string(autores)
     
-loop_principal:
-    # Prompt principal
+    # Exibe mensagem sobre valores fixos
     print_string(prompt)
     
-    # Leitura de x
-    print_string(prompt_x)
-    li $v0, 5           # Syscall para leitura de inteiro
-    syscall
-    move $s0, $v0       # Move valor lido para $s0 (x)
+    # Valores fixos para demonstra√ß√£o
+    li $s0, 30    # x = 10
+    li $s1, 190   # i = 100
     
-    # Verifica se deve encerrar
-    bltz $s0, encerrar_programa
-    
-    # Leitura de i
-    print_string(prompt_i)
-    li $v0, 5           # Syscall para leitura de inteiro
-    syscall
-    move $s1, $v0       # Move valor lido para $s1 (i)
-    
-    # Verifica se deve encerrar
-    bltz $s1, encerrar_programa
-    
-    # Chama a funÁ„o sqrt_nr
-    move $a0, $s0       # x
-    move $a1, $s1       # i
+    # Chama a fun√ß√£o sqrt_nr
+    move $a0, $s0    # x
+    move $a1, $s1    # i
     jal sqrt_nr
-    move $s2, $v0       # Salva resultado em $s2
+    move $s2, $v0    # Salva resultado em $s2
     
     # Exibe resultado
     print_string(result1)
@@ -76,12 +59,10 @@ loop_principal:
     print_int($s2)      # resultado
     print_string(newline)
     
-    j loop_principal
-    
-encerrar_programa:
+    # Encerra programa ap√≥s uma execu√ß√£o
     print_string(encerrar)
     
-    # EpÌlogo
+    # Ep√≠logo
     lw $ra, 0($sp)
     addi $sp, $sp, 4
     
@@ -89,16 +70,16 @@ encerrar_programa:
     li $v0, 10
     syscall
 
-# FunÁ„o sqrt_nr(x, i)
-# Par‚metros: 
-#   $a0 = x (n˙mero para calcular a raiz)
-#   $a1 = i (n˙mero de iteraÁıes)
+# Fun√ß√£o sqrt_nr(x, i)
+# Par√¢metros: 
+#   $a0 = x (n√∫mero para calcular a raiz)
+#   $a1 = i (n√∫mero de itera√ß√µes)
 # Retorno: 
-#   $v0 = resultado da aproximaÁ„o
+#   $v0 = resultado da aproxima√ß√£o
 sqrt_nr:
     # Salva registradores na pilha
     addi $sp, $sp, -16
-    sw $ra, 12($sp)     # EndereÁo de retorno
+    sw $ra, 12($sp)     # Endere√ßo de retorno
     sw $s0, 8($sp)      # Para armazenar x
     sw $s1, 4($sp)      # Para armazenar i
     sw $s2, 0($sp)      # Para armazenar resultado anterior
@@ -120,13 +101,13 @@ sqrt_nr:
     
     # Calcula x / sqrt_nr(x, i-1)
     div $s0, $s2        # x / sqrt_nr(x, i-1)
-    mflo $t0            # t0 = quociente da divis„o
+    mflo $t0            # t0 = quociente da divis√£o
     
     # Calcula (sqrt_nr(x, i-1) + x/sqrt_nr(x, i-1))
     add $t1, $s2, $t0
     
     # Divide por 2: resultado / 2
-    srl $v0, $t1, 1     # Shift right logical = divis„o por 2
+    srl $v0, $t1, 1     # Shift right logical = divis√£o por 2
     
     j fim_funcao
     
