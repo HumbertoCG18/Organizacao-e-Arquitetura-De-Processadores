@@ -1,4 +1,4 @@
-O objetivo deste programa é mostrar o uso mais básico da linguagem
+#O objetivo deste programa é mostrar o uso mais básico da linguagem
 #	de montagem do MIPS, através de um programa trivial que soma dois
 #	números quaisquer de 32 bits (A e B no programa) armazenados em 
 #	memória e coloca o resultado em uma terceira posição de memória
