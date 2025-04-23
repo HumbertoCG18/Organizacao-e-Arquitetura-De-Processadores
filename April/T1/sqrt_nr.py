@@ -25,7 +25,7 @@ def sqrt_nr(x, i):
 def main():
     # Mensagens iniciais
     print("Programa de Raiz Quadrada – Newton-Raphson")
-    print("Desenvolvedores: <Lista de nomes dos alunos>")
+    print("Desenvolvedor: Humberto Corrêa Gomes")
 
     while True:
         # Prompt principal

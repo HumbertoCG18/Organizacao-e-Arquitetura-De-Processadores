@@ -15,8 +15,8 @@
 
 # Dados
 .data
-titulo:     .asciiz "Programa de Raiz Quadrada – Newton-Raphson\n"
-autores:    .asciiz "Desenvolvedores: <Humberto Correa Gomes>\n"
+titulo:     .asciiz "Programa de Raiz Quadrada -- Newton-Raphson\n"
+autores:    .asciiz "Desenvolvedor: Humberto Correa Gomes\n"
 prompt:     .asciiz "\nExemplo com valores fixos: x=10 e i=100\n"
 encerrar:   .asciiz "Programa encerrado.\n"
 result1:    .asciiz "sqrt("
@@ -24,12 +24,12 @@ virgula:    .asciiz ", "
 result2:    .asciiz ") = "
 newline:    .asciiz "\n"
 
-# Código
+# C?digo
 .text
 .globl main
 
 main:
-    # Prólogo
+    # Pr?logo
     addi $sp, $sp, -4
     sw $ra, 0($sp)
     
@@ -40,11 +40,11 @@ main:
     # Exibe mensagem sobre valores fixos
     print_string(prompt)
     
-    # Valores fixos para demonstração
+    # Valores fixos para demonstra??o
     li $s0, 30    # x = 10
     li $s1, 190   # i = 100
     
-    # Chama a função sqrt_nr
+    # Chama a fun??o sqrt_nr
     move $a0, $s0    # x
     move $a1, $s1    # i
     jal sqrt_nr
@@ -59,10 +59,10 @@ main:
     print_int($s2)      # resultado
     print_string(newline)
     
-    # Encerra programa após uma execução
+    # Encerra programa ap?s uma execu??o
     print_string(encerrar)
     
-    # Epílogo
+    # Ep?logo
     lw $ra, 0($sp)
     addi $sp, $sp, 4
     
@@ -70,16 +70,16 @@ main:
     li $v0, 10
     syscall
 
-# Função sqrt_nr(x, i)
-# Parâmetros: 
-#   $a0 = x (número para calcular a raiz)
-#   $a1 = i (número de iterações)
+# Fun??o sqrt_nr(x, i)
+# Par?metros: 
+#   $a0 = x (n?mero para calcular a raiz)
+#   $a1 = i (n?mero de itera??es)
 # Retorno: 
-#   $v0 = resultado da aproximação
+#   $v0 = resultado da aproxima??o
 sqrt_nr:
     # Salva registradores na pilha
     addi $sp, $sp, -16
-    sw $ra, 12($sp)     # Endereço de retorno
+    sw $ra, 12($sp)     # Endere?o de retorno
     sw $s0, 8($sp)      # Para armazenar x
     sw $s1, 4($sp)      # Para armazenar i
     sw $s2, 0($sp)      # Para armazenar resultado anterior
@@ -101,13 +101,13 @@ sqrt_nr:
     
     # Calcula x / sqrt_nr(x, i-1)
     div $s0, $s2        # x / sqrt_nr(x, i-1)
-    mflo $t0            # t0 = quociente da divisão
+    mflo $t0            # t0 = quociente da divis?o
     
     # Calcula (sqrt_nr(x, i-1) + x/sqrt_nr(x, i-1))
     add $t1, $s2, $t0
     
     # Divide por 2: resultado / 2
-    srl $v0, $t1, 1     # Shift right logical = divisão por 2
+    srl $v0, $t1, 1     # Shift right logical = divis?o por 2
     
     j fim_funcao
     
