@@ -24,12 +24,12 @@ virgula:    .asciiz ", "
 result2:    .asciiz ") = "
 newline:    .asciiz "\n"
 
-# C?digo
+# Codigo
 .text
 .globl main
 
 main:
-    # Pr?logo
+
     addi $sp, $sp, -4
     sw $ra, 0($sp)
     
@@ -40,11 +40,11 @@ main:
     # Exibe mensagem sobre valores fixos
     print_string(prompt)
     
-    # Valores fixos para demonstra??o
+    # Valores fixos para demonstracao
     li $s0, 30    # x = 10
     li $s1, 190   # i = 100
     
-    # Chama a fun??o sqrt_nr
+    # Chama a função sqrt_nr
     move $a0, $s0    # x
     move $a1, $s1    # i
     jal sqrt_nr
@@ -59,10 +59,9 @@ main:
     print_int($s2)      # resultado
     print_string(newline)
     
-    # Encerra programa ap?s uma execu??o
+    # Encerra programa apos uma execucao
     print_string(encerrar)
     
-    # Ep?logo
     lw $ra, 0($sp)
     addi $sp, $sp, 4
     
@@ -70,16 +69,16 @@ main:
     li $v0, 10
     syscall
 
-# Fun??o sqrt_nr(x, i)
-# Par?metros: 
-#   $a0 = x (n?mero para calcular a raiz)
-#   $a1 = i (n?mero de itera??es)
+# Função sqrt_nr(x, i)
+# Parametros: 
+#   $a0 = x (numero para calcular a raiz)
+#   $a1 = i (numero de iteracoes)
 # Retorno: 
-#   $v0 = resultado da aproxima??o
+#   $v0 = resultado da aproximado
 sqrt_nr:
     # Salva registradores na pilha
     addi $sp, $sp, -16
-    sw $ra, 12($sp)     # Endere?o de retorno
+    sw $ra, 12($sp)     # Endereco de retorno
     sw $s0, 8($sp)      # Para armazenar x
     sw $s1, 4($sp)      # Para armazenar i
     sw $s2, 0($sp)      # Para armazenar resultado anterior
@@ -101,13 +100,13 @@ sqrt_nr:
     
     # Calcula x / sqrt_nr(x, i-1)
     div $s0, $s2        # x / sqrt_nr(x, i-1)
-    mflo $t0            # t0 = quociente da divis?o
+    mflo $t0            # t0 = quociente da divisao
     
     # Calcula (sqrt_nr(x, i-1) + x/sqrt_nr(x, i-1))
     add $t1, $s2, $t0
     
     # Divide por 2: resultado / 2
-    srl $v0, $t1, 1     # Shift right logical = divis?o por 2
+    srl $v0, $t1, 1     # Shift right logical = divisao por 2
     
     j fim_funcao
     
