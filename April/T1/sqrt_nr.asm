@@ -41,10 +41,10 @@ main:
     print_string(prompt)
     
     # Valores fixos para demonstracao
-    li $s0, 30    # x = 10
-    li $s1, 190   # i = 100
+    li $s0, 30    # x = 30
+    li $s1, 5   # i = 5
     
-    # Chama a funÃ§Ã£o sqrt_nr
+    # Chama a função sqrt_nr
     move $a0, $s0    # x
     move $a1, $s1    # i
     jal sqrt_nr
@@ -69,7 +69,7 @@ main:
     li $v0, 10
     syscall
 
-# FunÃ§Ã£o sqrt_nr(x, i)
+# Função sqrt_nr(x, i)
 # Parametros: 
 #   $a0 = x (numero para calcular a raiz)
 #   $a1 = i (numero de iteracoes)
